@@ -1,10 +1,4 @@
-"""Anonymous usage counting. No names, no IPs, no cookies.
 
-Each browser session gets a random ID (uuid4) that identifies nothing about the person.
-Events are saved to:
-  1. a local SQLite file (works instantly; on free hosting it resets when the app restarts)
-  2. optionally a Google Sheet via an Apps Script webhook (permanent, free). See README.
-"""
 import os, sqlite3, tempfile, threading, uuid, json
 from datetime import datetime, timezone
 import streamlit as st
@@ -15,7 +9,7 @@ COLUMNS = ["ts", "session", "event", "fields", "dream", "top"]
 def _secret(name):
     try:
         return st.secrets.get(name)
-    except Exception:          # no secrets file configured
+    except Exception:          
         return None
 
 
@@ -46,7 +40,7 @@ def _post_webhook(url, row):
         requests.post(url, data=json.dumps(dict(zip(COLUMNS, row))), timeout=5,
                       headers={"Content-Type": "text/plain"})
     except Exception:
-        pass                    # tracking must never break the app
+        pass                   
 
 
 def log_event(event, fields=None, dream=None, top=""):
