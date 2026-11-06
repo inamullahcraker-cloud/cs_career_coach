@@ -18,11 +18,10 @@ for k, v in {"step": 1, "session": None, "result": None, "fit_history": [], "lev
     ss.setdefault(k, v)
 
 
-# ---------- anonymous stats page (open the app with ?admin=1) ----------
 if "admin" in st.query_params:
     tracker.render_admin()
     st.stop()
-tracker.log_visit()          # one anonymous count per browser session
+tracker.log_visit()          
 
 
 def go(step):
