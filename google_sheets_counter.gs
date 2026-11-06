@@ -1,6 +1,5 @@
-// Paste this into Extensions > Apps Script in a NEW Google Sheet. Then Deploy > New deployment >
-// Web app > Execute as: Me > Who has access: Anyone. Copy the Web app URL.
-const SECRET = "change-me-to-a-long-random-word";   // same value goes in TRACKER_KEY
+
+const SECRET = "change-me-to-a-long-random-word";   
 
 function doPost(e) {
   const d = JSON.parse(e.postData.contents);
@@ -9,7 +8,7 @@ function doPost(e) {
   return ContentService.createTextOutput("ok");
 }
 
-function doGet(e) {                                  // only the admin page reads, using the secret
+function doGet(e) {                                  
   if (!e.parameter || e.parameter.key !== SECRET)
     return ContentService.createTextOutput("[]").setMimeType(ContentService.MimeType.JSON);
   const rows = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet().getDataRange().getValues();
