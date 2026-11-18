@@ -41,7 +41,6 @@ st.progress((ss.step - 1) / 3, text=labels[ss.step - 1])
 # ================= STEP 1: PROFILE =================
 if ss.step == 1:
     st.subheader("👋 Let's start with you")
-    ss.name = st.text_input("Your name (optional)", ss.name)
     ss.hours = st.slider("Hours per week you can study", 2, 40, ss.hours)
     ss.months = st.slider("Months until you want to be job-ready", 3, 24, ss.months)
 
